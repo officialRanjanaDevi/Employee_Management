@@ -43,7 +43,7 @@ const Login = () => {
         }, 3000);
       } else {
         setTimeout(() => {
-          setStatus("success")
+          setStatus("failed")
           setMess("Login Failed")
         }, 100);
         setTimeout(() => {
@@ -53,7 +53,7 @@ const Login = () => {
       }
     } catch (error) {
       setTimeout(() => {
-        setStatus("success")
+        setStatus("failed")
         setMess("Login Failed")
       }, 100);
       setTimeout(() => {
