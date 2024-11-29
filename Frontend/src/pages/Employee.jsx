@@ -174,7 +174,8 @@ const Employee = () => {
   };
 
   useEffect(() => {
-  
+     console.log(page)
+     console.log(filter)
     fetchData();
   }, [page,filter]);
 
