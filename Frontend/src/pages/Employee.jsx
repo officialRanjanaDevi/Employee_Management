@@ -6,7 +6,8 @@ const Employee = () => {
   console.log(page)
   const [filter,setFilter]=useState("All");
   const applyFilter=(e)=>{
-    setFilter(e.target.value); 
+    setFilter(()=>{e.target.value}); 
+    console.log(filter)
     fetchData();
    }
   const [status, setStatus] = useState("");
