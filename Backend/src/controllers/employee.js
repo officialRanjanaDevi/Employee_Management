@@ -1,8 +1,8 @@
 import {asyncHandler} from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
-import Employee from "../models/Employee.js"
-
+import {Employee} from "../models/Employee.js"
+import {uploadOnCloudinary} from "../utils/cloudinary.js"
 const addEmployee=asyncHandler(async(req,res)=>{
      const {name,email,contact,designation,gender,course} =req.body;
      const imagePath=req.file.path;
@@ -15,7 +15,8 @@ const addEmployee=asyncHandler(async(req,res)=>{
     if (!imagePath) {
       throw new ApiError(400,"Missing Employee image")
      }
-    const imageUrl = await uploadOnCloudinary(imagePath);
+     const imageUrl = await uploadOnCloudinary(imagePath);
+     
     if (!imageUrl) {
       throw new ApiError(
        500,
@@ -34,9 +35,10 @@ const addEmployee=asyncHandler(async(req,res)=>{
 })
 
 const editEmployee=asyncHandler(async(req,res)=>{
-    const {data}=req.body;
-    const {id}=req.params;
-    const imagePath=req.file.path;
+    const data={...req.body};
+  
+   const {id}=req.params;
+    const imagePath=req.file?.path;
 
     const employee=await Employee.findById(id);
 
@@ -75,6 +77,15 @@ const deleteEmployee=asyncHandler(async(req,res)=>{
 })
 
 const viewEmployee=asyncHandler(async(req,res)=>{
-    
+    const {filter}=req.params;
+    const page=parseInt(req.query.page)||0;
+  
+    let employees=await Employee.find({}).sort({ [filter]: 1 }).skip(page*5).limit(5);
+
+    if(filter==="name"||filter==="email"||filter==="_id"||filter==="createdAt"){
+        employees = await Employee.find({}).sort({ [filter]: 1 }).skip(page*5).limit(5);
+     }
+   
+    return res.status(200).json(new ApiResponse(200,employees,"employees data is as follows"))
 })
-export {addEmployee,editEmployee,deleteEmployee}
+export {addEmployee,editEmployee,deleteEmployee,viewEmployee}

@@ -16,7 +16,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-
+        
           {username && (<>
             <Route path="/employee" element={<Employee />} />
             <Route path="/addEmployee" element={<AddEmployee />} />

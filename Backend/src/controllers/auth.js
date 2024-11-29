@@ -75,4 +75,5 @@ const register =asyncHandler(async(req,res)=>{
         secure: true 
     }).json(new ApiResponse(200,loggedInUser,"Login successfull"))
 })
+
 export {login,register}

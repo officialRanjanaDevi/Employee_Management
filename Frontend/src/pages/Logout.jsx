@@ -1,9 +1,19 @@
-import React from 'react'
-
+import React,{useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 const Logout = () => {
-  return (
-    <div>
-      
+  const navigate=useNavigate();
+  useEffect(()=>{
+    localStorage.removeItem("username");
+    navigate("/")
+ 
+  },[])
+
+   return (
+    <div className='h-screen '>
+      <p className='text-center font-bold'>
+      Logout failed
+      </p>
+     
     </div>
   )
 }
