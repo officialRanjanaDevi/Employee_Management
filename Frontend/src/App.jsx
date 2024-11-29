@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
@@ -10,6 +10,10 @@ import Logout from './pages/Logout'
 import Home from './pages/Home'
 const App = () => {
   const [username, setUsername] = useState(localStorage.getItem("username"))
+  useEffect(()=>{
+
+  },[username])
+  
   return (
     <div>
       <BrowserRouter>
