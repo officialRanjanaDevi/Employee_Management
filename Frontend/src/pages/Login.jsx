@@ -38,12 +38,12 @@ const Login = () => {
 
         localStorage.setItem("username",response.data.username)
 
-        navigate("/home")
+        navigate("/")
         setTimeout(() => {
           setStatus("success")
           setMess("Login Success")
         }, 3000);
-        
+
       } else {
         setTimeout(() => {
           setStatus("failed")
