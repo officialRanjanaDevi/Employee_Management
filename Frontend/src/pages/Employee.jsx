@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 const Employee = () => {
   const [data, setData] = useState([]);
   const [page,setPage]=useState(0);
-  console.log(page)
+
   const [filter,setFilter]=useState("All");
   const applyFilter=(e)=>{
-    setFilter(()=>{e.target.value}); 
-    console.log(filter)
-    fetchData();
+    setFilter(e.target.value); 
+  
    }
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
@@ -177,7 +176,7 @@ const Employee = () => {
   useEffect(() => {
   
     fetchData();
-  }, []);
+  }, [page,filter]);
 
 
   return (
@@ -206,14 +205,14 @@ const Employee = () => {
 
       <div className="flex justify-between mb-4">
         <div className="flex">
-          <div className="text-sm border-2 rounded-l-lg px-3 py-1 hover:scale-105 duration-300 cursor-pointer" onClick={()=>{setPage(page>0?page-1:0);fetchData()}}>
+          <div className="text-sm border-2 rounded-l-lg px-3 py-1 hover:scale-105 duration-300 cursor-pointer" onClick={()=>{setPage(page>0?page-1:0)}}>
           <i class="fa-solid fa-angles-left"></i>&nbsp;
              Previous
           </div>
           <div className=" border-2 px-3 py-1 font-bold cursor-pointer">
              {page+1}
           </div>
-          <div className="text-sm border-2 rounded-r-lg px-3 py-1 hover:scale-105 duration-300 cursor-pointer" onClick={()=>{setPage(page+1);fetchData()}}>
+          <div className="text-sm border-2 rounded-r-lg px-3 py-1 hover:scale-105 duration-300 cursor-pointer" onClick={()=>{setPage(page+1)}}>
              Next&nbsp;
              <i class="fa-solid fa-angles-right"></i>
           </div>
