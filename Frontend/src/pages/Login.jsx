@@ -20,6 +20,7 @@ const Login = () => {
    
 
     try {
+       console.log(`${import.meta.env.VITE_SERVER_URL}/auth/login`)
         const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/login`, {
         method: "POST",
         headers: {
