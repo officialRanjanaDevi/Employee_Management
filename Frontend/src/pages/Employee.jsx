@@ -7,7 +7,6 @@ const Employee = () => {
   const [filter,setFilter]=useState("All");
   const applyFilter=(e)=>{
     setFilter(e.target.value); 
-  
    }
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
