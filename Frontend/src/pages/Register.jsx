@@ -39,7 +39,7 @@ const Register = () => {
           setStatus("")
           setMess("")
         }, 3000);
-        navigate("/home")
+        navigate("/")
       } else {
         setTimeout(() => {
           setStatus("success")
